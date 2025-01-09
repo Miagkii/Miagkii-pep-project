@@ -10,7 +10,7 @@ public class AccountService {
         accountDAO = new AccountDAO();
     }
     
-    public Account validetRegistrationAccount(Account account) {
+    public Account registrationAccount(Account account) {
         if(account.username == null || account.username.trim().isEmpty()) {
             System.out.println("Registration failed: Username cannot be blank");
             return null;
@@ -36,6 +36,14 @@ public class AccountService {
         return null;
     }
 
-    
+    public Account loginAccount(Account account) {
+        try {
+            Account loggedAccount = accountDAO.loginAccount(account.getUsername(), account.getPassword());
+            return loggedAccount;
+        } catch (Exception e) {
+            System.out.println("Login failed: Exception occurred while validating login.");
+        }
+        return null;
+    }
     
 }
