@@ -17,6 +17,7 @@ public class AccountService {
         }
         if (account.password == null || account.password.length() < 4) {
             System.out.println("Registration failed: Password must be at least 4 characters long");
+            return null;
         }
         try {
             if(accountDAO.getAccountByUsername(account.username) != null){

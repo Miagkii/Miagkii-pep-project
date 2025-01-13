@@ -7,6 +7,7 @@ import java.sql.*;
 
 
 public class AccountDAO {
+    
     public Account insetrAccount(Account account) {
         Connection connection = ConnectionUtil.getConnection();
         try {
@@ -17,8 +18,8 @@ public class AccountDAO {
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()) {
-                int generatedAccountId = (int) rs.getLong(1);
-                return new Account(generatedAccountId, account.getUsername(), account.getPassword());
+                int genId = rs.getInt(1);
+                return new Account(genId, account.getUsername(), account.getPassword());
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
