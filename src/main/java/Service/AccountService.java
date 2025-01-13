@@ -20,7 +20,7 @@ public class AccountService {
             return null;
         }
         try {
-            if(accountDAO.getAccountByUsername(account.username) != null){
+            if(accountDAO.getByUsername(account.username) != null){
                 System.out.println("Registration failed: Username already exists.");
                 return null;
             }
@@ -29,7 +29,7 @@ public class AccountService {
             return null;
         }
         try {
-            Account registredAccount = accountDAO.insetrAccount(account);
+            Account registredAccount = accountDAO.insert(account);
             return registredAccount;
         } catch (Exception e) {
             System.out.println("Registration failed: Could not register user due to a database error.");
@@ -39,7 +39,7 @@ public class AccountService {
 
     public Account loginAccount(Account account) {
         try {
-            Account loggedAccount = accountDAO.loginAccount(account.getUsername(), account.getPassword());
+            Account loggedAccount = accountDAO.login(account.getUsername(), account.getPassword());
             return loggedAccount;
         } catch (Exception e) {
             System.out.println("Login failed: Exception occurred while validating login.");

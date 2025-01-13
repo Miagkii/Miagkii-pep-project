@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class AccountDAO {
     
-    public Account insetrAccount(Account account) {
+    public Account insert(Account account) {
         Connection connection = ConnectionUtil.getConnection();
         try {
             String sql = "INSERT INTO account (username, password) VALUES (?, ?);";
@@ -27,7 +27,7 @@ public class AccountDAO {
         return null;
     }
 
-    public Account getAccountByUsername(String username) {
+    public Account getByUsername(String username) {
         Connection connection = ConnectionUtil.getConnection();
         try {
             String sql = "SELECT * FROM account WHERE username = ?";
@@ -46,7 +46,7 @@ public class AccountDAO {
         return null;
     }
 
-    public Account loginAccount(String username, String password) {
+    public Account login(String username, String password) {
         Connection connection = ConnectionUtil.getConnection();
         try {
             String sql = "SELECT * FROM account WHERE username = ?;";
