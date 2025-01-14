@@ -10,7 +10,7 @@ public class AccountService {
         accountDAO = new AccountDAO();
     }
     
-    public Account registrationAccount(Account account) {
+    public Account registration(Account account) {
         if(account.username == null || account.username.trim().isEmpty()) {
             System.out.println("Registration failed: Username cannot be blank");
             return null;
@@ -37,7 +37,7 @@ public class AccountService {
         return null;
     }
 
-    public Account loginAccount(Account account) {
+    public Account login(Account account) {
         try {
             Account loggedAccount = accountDAO.login(account.getUsername(), account.getPassword());
             return loggedAccount;
@@ -47,4 +47,15 @@ public class AccountService {
         return null;
     }
     
+    public Account getById(int id) {
+        try {
+            Account account = accountDAO.getById(id);
+            return account;
+        } catch (Exception e) {
+            System.out.println("Account retrieval failed");
+        }
+        return null;
+    }
+    
+
 }
