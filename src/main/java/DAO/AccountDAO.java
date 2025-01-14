@@ -68,9 +68,9 @@ public class AccountDAO {
     }
 
     public Account getById(int id) {
-        Connection connection = ConnectionUtil.getConnection();
+        String sql = "SELECT * FROM account WHERE account_id = ?;";
         try {
-            String sql = "SELECT * FROM account WHERE account_id = ?";
+            Connection connection = ConnectionUtil.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -80,10 +80,11 @@ public class AccountDAO {
                                 rs.getString("password"));
                 return account;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
+
 
 }

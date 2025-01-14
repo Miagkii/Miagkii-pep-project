@@ -56,6 +56,12 @@ public class AccountService {
         }
         return null;
     }
+
+    public boolean accountIsPresent(int id){
+        if(getById(id) == null) {
+            return false;
+        } else return true;
+    }
     
 
 }

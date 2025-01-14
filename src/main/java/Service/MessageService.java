@@ -9,17 +9,20 @@ import java.util.List;
 
 
 public class MessageService {
-
+    
+    private AccountService accountService;
     private MessageDAO messageDAO;
 
     public MessageService() {
         messageDAO = new MessageDAO();
+        accountService = new AccountService();
     }
 
     public Message create(Message message) {
-        
-        int id = message.posted_by;
-        
+
+        if(accountService.accountIsPresent(message.posted_by) == false) {
+            return null;
+        }
         if(message.getMessage_text() == null || message.getMessage_text().trim().isEmpty()) {
             return null;
         }
@@ -44,5 +47,6 @@ public class MessageService {
         return null;
     }
 
+    
     
 }
