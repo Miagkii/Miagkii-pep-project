@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public class MessageService {
-    
+
     private AccountService accountService;
     private MessageDAO messageDAO;
 
@@ -47,6 +47,10 @@ public class MessageService {
         return null;
     }
 
+    public List<Message> getAll(){
+        List<Message> allMessages = messageDAO.getAll();
+        return allMessages;
+    }
     
     
 }
