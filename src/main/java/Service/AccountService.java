@@ -1,6 +1,5 @@
 package Service;
 import Model.Account;
-import java.sql.SQLException;
 import DAO.AccountDAO;
 
 public class AccountService {

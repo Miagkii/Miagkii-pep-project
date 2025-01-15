@@ -2,7 +2,6 @@ package Service;
 
 import Model.Account;
 import Model.Message;
-import DAO.AccountDAO;
 import DAO.MessageDAO;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,4 +96,20 @@ public class MessageService {
         return null;
         
     }
+
+    public List<Message> getByAccount(int id) {
+
+        if(accountService.accountIsPresent(id) == false) {
+            return new ArrayList<>();
+        }
+        try {
+            Account account = accountService.getById(id);
+            List<Message> messages = messageDAO.getByAccount(account);
+            return messages != null ? messages : new ArrayList<>();
+        } catch (Exception e) {
+            System.out.println("Messages cannot be retrieve");
+        }
+        return new ArrayList<>();
+    }
+
 }
